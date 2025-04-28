@@ -3,6 +3,7 @@
     name: Sum two numbers
     image: python:3.11-slim
     command:
+      - pip install valohai-utils
       - python sum_values.py
     parameters:
       - name: number_1
@@ -13,7 +14,6 @@
         default: 5
     outputs:
       - name: result
-        type: file
         description: The sum of the two numbers
 
 - pipeline:
@@ -22,3 +22,4 @@
       - name: sum
         type: execution
         step: Sum two numbers
+    edges: []
