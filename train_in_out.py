@@ -13,9 +13,11 @@ exponente = valohai.parameters('exponente').value
 print(f"Exponente configurado: {exponente}")
 
 # Obtener path del dataset
-input_paths = valohai.inputs('dataset').paths()
+input_paths = list(valohai.inputs('dataset').paths())
+
 if not input_paths:
     raise ValueError("No se ha proporcionado dataset.")
+
 dataset_path = input_paths[0]
 
 # Leer CSV
