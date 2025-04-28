@@ -29,7 +29,7 @@ print("Procesando datos...")
 processed_df = df.applymap(lambda x: x**exponente if isinstance(x, (int, float)) else x)
 
 # Obtener output path y especificar nombre del archivo
-output_dir = valohai.outputs('result').path()  # Obtener la ruta del directorio de salida
+output_dir = valohai.outputs('result').path('processed_positions.csv')  # Especificar el archivo
 output_file = os.path.join(output_dir, 'processed_positions.csv')  # Especificar el archivo a guardar
 
 # Crear directorio de salida si no existe
