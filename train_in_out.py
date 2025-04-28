@@ -28,12 +28,12 @@ df = pd.read_csv(dataset_path)
 print("Procesando datos...")
 processed_df = df.applymap(lambda x: x**exponente if isinstance(x, (int, float)) else x)
 
-# Obtener output path
-# Obtener output path
-output_dir = valohai.outputs('result').path()
-output_file = os.path.join(output_dir, 'processed_positions.csv')
+# Obtener output path y especificar nombre del archivo
+output_dir = valohai.outputs('result').path()  # Obtener la ruta del directorio de salida
+output_file = os.path.join(output_dir, 'processed_positions.csv')  # Especificar el archivo a guardar
+
+# Crear directorio de salida si no existe
 os.makedirs(output_dir, exist_ok=True)
-output_file = os.path.join(output_dir, 'processed_positions.csv')
 
 # Guardar resultado
 processed_df.to_csv(output_file, index=False)
