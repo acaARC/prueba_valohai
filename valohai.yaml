@@ -1,0 +1,6 @@
+- step:
+    name: hello-job
+    image: python:3.11-slim
+    command:
+    - pip install -r requirements.txt
+    - python ./train.py {parameters}
