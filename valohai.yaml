@@ -1,26 +1,24 @@
-steps:
-  - step:
-      name: Sum two numbers
-      image: python:3.11-slim
-      command:
-        - python sum_values.py
-      inputs:
-        - name: number_1
-          type: integer
-          default: 3
-        - name: number_2
-          type: integer
-          default: 5
-      outputs:
-        - name: result
-          type: file
-          description: The sum of the two numbers
-          default: result.txt
+---
+- step:
+    name: Sum two numbers
+    image: python:3.11-slim
+    command:
+      - python sum_values.py
+    parameters:
+      - name: number_1
+        type: integer
+        default: 3
+      - name: number_2
+        type: integer
+        default: 5
+    outputs:
+      - name: result
+        type: file
+        description: The sum of the two numbers
 
-# Pipeline (optional for just one step)
-pipeline:
-  name: Simple Summation
-  nodes:
-    - name: sum
-      type: execution
-      step: Sum two numbers
+- pipeline:
+    name: Simple Summation
+    nodes:
+      - name: sum
+        type: execution
+        step: Sum two numbers

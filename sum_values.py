@@ -1,17 +1,19 @@
+import valohai
 import os
 
-# Obtener los parámetros de entrada
-number_1 = int(os.getenv('VH_PARAMETER_number_1', 0))
-number_2 = int(os.getenv('VH_PARAMETER_number_2', 0))
+# Preparar valohai
+valohai.prepare(step='Sum two numbers')
 
-# Sumar los números
-sum_result = number_1 + number_2
+# Leer parámetros
+number_1 = valohai.parameters('number_1').value
+number_2 = valohai.parameters('number_2').value
 
-# Ruta de salida
-output_file = os.getenv('VH_OUTPUTS_DIR', '.') + "/result.txt"
+# Hacer la suma
+result = number_1 + number_2
+print(f"La suma es: {result}")
 
-# Guardar el resultado en un archivo
-with open(output_file, 'w') as f:
-    f.write(f"The sum of {number_1} and {number_2} is {sum_result}\n")
-
-print(f"Sum result saved to: {output_file}")
+# Guardar resultado
+output_path = valohai.outputs('result').path('result.txt')
+os.makedirs(os.path.dirname(output_path), exist_ok=True)
+with open(output_path, 'w') as f:
+    f.write(str(result))
