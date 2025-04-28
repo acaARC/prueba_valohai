@@ -1,14 +1,37 @@
+---
 - step:
-    name: train-in-out
-    image: python:3.11-slim
+    name: Preprocess data
+    image: python:3.6
     command:
-      - pip install pandas valohai-utils
-      - python train_in_out.py
+      - pip install numpy==1.18.1
+      - python preprocess.py
     inputs:
-      - name: dataset
-    outputs:
-      - name: result
-    parameters:
-      - name: exponente
-        type: integer
-        default: 2
+      - name: my-raw-mnist-dataset
+        default: datum://01712b11-e1be-138c-579e-c0f95f41393f
+- step:
+    name: Train MNIST model
+    image: tensorflow/tensorflow:2.0.1-gpu-py3
+    command: python train.py
+    inputs:
+        - name: my-processed-mnist-dataset
+          default: datum://01712b28-b587-a02f-7301-e0035441e505
+- pipeline:
+    name: Training pipeline
+    nodes:
+      - name: preprocess
+        type: execution
+        step: Preprocess data
+      - name: train
+        type: execution
+        step: Train MNIST model
+    edges:
+      - [preprocess.output.*.npz, train.input.my-processed-mnist-dataset]
+- endpoint:
+    name: digit-predict
+    description: predict digits from image inputs
+    image: tensorflow/tensorflow:2.0.1-py3
+    wsgi: predict:mypredictor
+    files:
+        - name: model
+          description: Model output file from TensorFlow
+          path: model.h5
