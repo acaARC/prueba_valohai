@@ -1,34 +1,26 @@
 ---
 - step:
-    name: Preprocess data
-    image: python:3.6
+    name: Train Model
+    image: python:3.11-slim
     command:
-      - pip install numpy==1.18.1
-      - python preprocess.py
-    inputs:
-      - name: my-raw-mnist-dataset
-        default: datum://01712b11-e1be-138c-579e-c0f95f41393f
-- step:
-    name: Train MNIST model
-    image: tensorflow/tensorflow:2.0.1-gpu-py3
-    command: python train.py
-    inputs:
-        - name: my-processed-mnist-dataset
-          default: datum://01712b28-b587-a02f-7301-e0035441e505
+      - pip install tensorflow numpy
+      - python train.py
+    outputs:
+      - name: model
+        description: Trained model output
+        type: file
+        default: model.h5
+
 - pipeline:
-    name: Training pipeline
+    name: Model Training Pipeline
     nodes:
-      - name: preprocess
-        type: execution
-        step: Preprocess data
       - name: train
         type: execution
-        step: Train MNIST model
-    edges:
-      - [preprocess.output.*.npz, train.input.my-processed-mnist-dataset]
+        step: Train Model
+
 - endpoint:
-    name: digit-predict
-    description: predict digits from image inputs
+    name: model-predict
+    description: Model inference endpoint
     image: tensorflow/tensorflow:2.0.1-py3
     wsgi: predict:mypredictor
     files:
