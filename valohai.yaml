@@ -1,6 +1,14 @@
 - step:
-    name: hello-job
+    name: train-in-out
     image: python:3.11-slim
     command:
-    - pip install -r requirements.txt
-    - python ./train.py {parameters}
+      - pip install pandas valohai-utils
+      - python train_in_out.py
+    inputs:
+      - name: dataset
+    outputs:
+      - name: result
+    parameters:
+      - name: exponente
+        type: integer
+        default: 2
