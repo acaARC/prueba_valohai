@@ -35,7 +35,7 @@ print("Datos procesados.")
 
 # Obtener output path y especificar nombre del archivo
 print("Obteniendo path para guardar el archivo procesado...")
-output_file = valohai.outputs('result').path('processed_positions.csv')  # Especificar el archivo
+output_file = valohai.outputs('result').path('processed_positions.csv')  # Especificar el archivo de salida
 
 # Crear directorio de salida si no existe
 print(f"Guardando archivo procesado en: {output_file}...")
