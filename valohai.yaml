@@ -1,29 +1,26 @@
----
-- step:
-    name: Train Model
-    image: python:3.11-slim
-    command:
-      - pip install tensorflow numpy
-      - python train.py
-    outputs:
-      - name: model
-        description: Trained model output
-        type: file
-        default: model.h5
+steps:
+  - step:
+      name: Sum two numbers
+      image: python:3.11-slim
+      command:
+        - python sum_values.py
+      inputs:
+        - name: number_1
+          type: integer
+          default: 3
+        - name: number_2
+          type: integer
+          default: 5
+      outputs:
+        - name: result
+          type: file
+          description: The sum of the two numbers
+          default: result.txt
 
-- pipeline:
-    name: Model Training Pipeline
-    nodes:
-      - name: train
-        type: execution
-        step: Train Model
-
-- endpoint:
-    name: model-predict
-    description: Model inference endpoint
-    image: tensorflow/tensorflow:2.0.1-py3
-    wsgi: predict:mypredictor
-    files:
-        - name: model
-          description: Model output file from TensorFlow
-          path: model.h5
+# Pipeline (optional for just one step)
+pipeline:
+  name: Simple Summation
+  nodes:
+    - name: sum
+      type: execution
+      step: Sum two numbers
