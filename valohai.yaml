@@ -4,20 +4,19 @@
     image: python:3.11-slim
     command:
       - pip install valohai-utils
-      - python sum_values.py
+      - python sum_and_save.py
     parameters:
       - name: number_1
         type: integer
-        default: 3
+        default: 4
       - name: number_2
         type: integer
-        default: 5
+        default: 6
     outputs:
       - name: result
-        description: The sum of the two numbers
-
+        description: Sum result file
 - pipeline:
-    name: Simple Summation
+    name: Simple Summation Pipeline
     nodes:
       - name: sum
         type: execution
