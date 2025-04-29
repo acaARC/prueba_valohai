@@ -3,7 +3,7 @@
     name: Sum two numbers
     image: python:3.11-slim
     command:
-      - pip install valohai-utils
+      - pip install valohai-utils matplotlib
       - python sum_and_save.py
     parameters:
       - name: number_1
