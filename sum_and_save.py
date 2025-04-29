@@ -17,15 +17,21 @@ print(f"La suma es: {result}")
 output_dir = valohai.outputs('result').path('sum_output')
 os.makedirs(output_dir, exist_ok=True)
 
-# Crear una imagen mostrando el resultado
-fig, ax = plt.subplots(figsize=(6, 3))
+# Crear una imagen grande y bonita
+fig, ax = plt.subplots(figsize=(8, 4), dpi=150)
 ax.text(0.5, 0.5, f"{number_1} + {number_2} = {result}",
-        fontsize=20, ha='center', va='center')
-ax.axis('off')  # Ocultar ejes
+        fontsize=24, fontweight='bold', ha='center', va='center')
+ax.set_facecolor('#f0f0f0')  # Fondo gris claro
+ax.axis('off')  # Quitar ejes
 
 # Guardar imagen
 output_image = os.path.join(output_dir, 'sum_result.png')
-fig.savefig(output_image)
+fig.savefig(output_image, bbox_inches='tight')
 plt.close(fig)
 
-print(f"Imagen del resultado guardada en {output_image}")
+# Guardar un pequeño txt para control
+control_txt = os.path.join(output_dir, 'finished.txt')
+with open(control_txt, 'w') as f:
+    f.write('Script finalizado correctamente.\n')
+
+print(f"Imagen y control guardados en {output_dir}")
