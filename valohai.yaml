@@ -2,12 +2,11 @@
     name: hello-job
     image: python:3.11-slim
     command:
-    - pip install -r requirements.txt
-    - python ./hello.py {parameters}
-  inputs:
-    - name: dataset
-      default:
-        - s3://valohai-academy-files/tutorials/valohai101/2020.csv
-        - s3://valohai-academy-files/tutorials/valohai101/2021.csv
-        - s3://valohai-academy-files/tutorials/valohai101/2022.csv
-
+      - pip install pandas valohai-utils
+      - python ./hello.py
+    inputs:
+      - name: dataset
+        default:
+          - s3://valohai-academy-files/tutorials/valohai101/2020.csv
+          - s3://valohai-academy-files/tutorials/valohai101/2021.csv
+          - s3://valohai-academy-files/tutorials/valohai101/2022.csv
