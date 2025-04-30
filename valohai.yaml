@@ -13,4 +13,3 @@
     outputs:
       - name: combined
         description: Todos los CSV combinados
-        default: combined.csv
