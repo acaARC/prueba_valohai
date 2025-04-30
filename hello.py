@@ -2,7 +2,11 @@ import valohai
 import pandas as pd
 
 my_inputs = {
-    'dataset': 's3://valohai-academy-files/tutorials/valohai101/2022.csv'
+    'dataset': [
+        's3://valohai-academy-files/tutorials/valohai101/2020.csv',
+        's3://valohai-academy-files/tutorials/valohai101/2021.csv',
+        's3://valohai-academy-files/tutorials/valohai101/2022.csv'
+    ]
 }
 
 valohai.prepare(
@@ -12,5 +16,7 @@ valohai.prepare(
 
 print("Hello Valohai")
 
-df = pd.read_csv(valohai.inputs('dataset').path())
-print(df.iloc[:5, :3])
+for file in valohai.inputs('dataset').paths() :
+    print(file)
+    df = pd.read_csv(file)
+    print(df.iloc[:5, :3])
