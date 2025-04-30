@@ -1,24 +1,11 @@
----
 - step:
-    name: Sum two numbers
+    name: hello-job
     image: python:3.11-slim
     command:
-      - pip install valohai-utils matplotlib
-      - python sum_and_save.py
-    parameters:
-      - name: number_1
-        type: integer
-        default: 4
-      - name: number_2
-        type: integer
-        default: 6
-    outputs:
-      - name: result
-        description: Sum result file
-- pipeline:
-    name: Simple Summation Pipeline
-    nodes:
-      - name: sum
-        type: execution
-        step: Sum two numbers
-    edges: []
+    - pip install -r requirements.txt
+    - python ./hello.py {parameters}
+    inputs:
+    - name: dataset
+      default:
+      - s3://valohai-academy-files/tutorials/valohai101/2022.csv
+      optional: false

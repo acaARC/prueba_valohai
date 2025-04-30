@@ -1,0 +1,24 @@
+---
+- step:
+    name: Sum two numbers
+    image: python:3.11-slim
+    command:
+      - pip install valohai-utils matplotlib
+      - python sum_and_save.py
+    parameters:
+      - name: number_1
+        type: integer
+        default: 4
+      - name: number_2
+        type: integer
+        default: 6
+    outputs:
+      - name: result
+        description: Sum result file
+- pipeline:
+    name: Simple Summation Pipeline
+    nodes:
+      - name: sum
+        type: execution
+        step: Sum two numbers
+    edges: []
