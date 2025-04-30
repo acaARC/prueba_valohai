@@ -4,8 +4,10 @@
     command:
     - pip install -r requirements.txt
     - python ./hello.py {parameters}
-    inputs:
+  inputs:
     - name: dataset
       default:
-      - s3://valohai-academy-files/tutorials/valohai101/2022.csv
-      optional: false
+        - s3://valohai-academy-files/tutorials/valohai101/2020.csv
+        - s3://valohai-academy-files/tutorials/valohai101/2021.csv
+        - s3://valohai-academy-files/tutorials/valohai101/2022.csv
+
