@@ -1,9 +1,7 @@
 - step:
-    name: hello-job
+    name: playing-with-outputs
     image: python:3.11-slim
     command:
-      - pip install -r requirements.txt
-      - python ./hello.py
-    inputs:
-      - name: dataset
-        default: s3://valohai-academy-files/tutorials/valohai101/*.csv
+    - pip install -r requirements.txt
+    - pip install pillow
+    - python ./valohai_prueba.py {parameters}
