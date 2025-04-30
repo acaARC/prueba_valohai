@@ -6,10 +6,4 @@
       - python ./hello.py
     inputs:
       - name: dataset
-        default:
-          - s3://valohai-academy-files/tutorials/valohai101/2020.csv
-          - s3://valohai-academy-files/tutorials/valohai101/2021.csv
-          - s3://valohai-academy-files/tutorials/valohai101/2022.csv
-    outputs:
-      - name: combined
-        description: Todos los CSV combinados
+        default: s3://valohai-academy-files/tutorials/valohai101/*.csv

@@ -1,13 +1,9 @@
 import valohai
 import pandas as pd
+import numpy as np
 
-# Preparar inputs
 my_inputs = {
-    'dataset': [
-        's3://valohai-academy-files/tutorials/valohai101/2020.csv',
-        's3://valohai-academy-files/tutorials/valohai101/2021.csv',
-        's3://valohai-academy-files/tutorials/valohai101/2022.csv',
-    ]
+    'dataset': 's3://valohai-academy-files/tutorials/valohai101/*.csv'
 }
 
 valohai.prepare(
@@ -15,18 +11,15 @@ valohai.prepare(
     default_inputs=my_inputs
 )
 
-print("Hello Valohai\n")
+print("Hello Valohai")
 
-dataframes = []
-
+# Leer e imprimir las primeras filas de cada dataset
 for file in valohai.inputs('dataset').paths():
-    print(f"=== Leyendo archivo: {file} ===")
+    print(f"\n=== Leyendo archivo: {file} ===")
     df = pd.read_csv(file)
-    print(df.head(), "\n")
-    dataframes.append(df)
+    print(df.iloc[:5, :3])
 
-# Guardar dataset combinado
-combined_df = pd.concat(dataframes, ignore_index=True)
-output_path = valohai.outputs().path('combined.csv')
-combined_df.to_csv(output_path, index=False)
-print(f"Archivo combinado guardado en: {output_path}")
+# Crear y guardar un CSV con datos aleatorios
+df = pd.DataFrame(np.random.randint(0, 100, size=(100, 4)), columns=list('ABCD'))
+df.to_csv(valohai.outputs().path('mydatafile.csv'), index=False)
+print("\nArchivo aleatorio guardado como: mydatafile.csv")
