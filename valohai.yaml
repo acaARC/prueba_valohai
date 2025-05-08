@@ -5,3 +5,4 @@
     - pip install -r requirements.txt
     - pip install pillow
     - python ./valohai_prueba.py {parameters} 
+    environment: valohai-arquimea-ws2
