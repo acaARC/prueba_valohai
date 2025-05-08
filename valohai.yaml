@@ -1,10 +1,12 @@
 - step:
-    name: leer-dataset
-    image: python:3.11-slim
+    name: generar-dataset
+    image: python:3.11
     command:
-      - pip install valohai-utils
+      - pip install pillow numpy valohai-utils
       - python generate_dataset.py
-    inputs:
-      - name: dataset
-        default: dataset://agranado-dataset/v4
+    outputs:
+      - name: mi_ejemplo_output_carpeta
+        description: Carpeta con imágenes generadas
+      - name: valohai.metadata.jsonl
+        description: Metadatos para crear el dataset
     environment: valohai-arquimea-ws2
