@@ -3,7 +3,8 @@
     image: python:3.11-slim
     command:
       - pip install valohai-utils
-      - python leer_dataset.py
+      - python generate_dataset.py
     inputs:
       - name: dataset
         default: dataset://agranado-dataset/v4
+    environment: valohai-arquimea-ws2

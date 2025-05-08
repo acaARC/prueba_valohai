@@ -17,29 +17,29 @@ for i in range(1):
     output_files.append(f"mi_ejemplo_output_carpeta/{file_name}")
 
 # Crear metadata del dataset
-metadata = {
+"""metadata = {
     file_name: {
         "valohai.dataset-versions": ["dataset://agranado-dataset/v2"]
     }
     for file_name in output_files
-}
+}"""
 
 
 
 # SI QUEREMOS QUE LA SIGUIENTE VERSION TENGA LO DE LA ANTERIOR + LO NUEVO:
 # Ruta relativa del archivo dentro de outputs
-"""relative_path = f"mi_ejemplo_output_carpeta/{file_name}"
+relative_path = f"mi_ejemplo_output_carpeta/{file_name}"
 
 # Crear metadata con herencia desde v1
 metadata = {
     relative_path: {
         "valohai.dataset-versions": [{
-            'uri': "dataset://agranado-dataset/v2",
+            'uri': "dataset://agranado-dataset/v4",
             'from': "dataset://agranado-dataset/v1",
             'start_fresh': False
         }]
     }
-}"""
+}
 
 
 metadata_path = valohai.outputs().path("valohai.metadata.jsonl")
