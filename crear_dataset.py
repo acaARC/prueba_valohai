@@ -6,6 +6,11 @@ import valohai
 # Ruta origen donde están montados los datos reales (ajusta si es necesario)
 source_dir = '/data/360mip'
 
+print("Archivos en el origen:")
+for root, _, files in os.walk(source_dir):
+    for f in files:
+        print(os.path.join(root, f))
+
 # Ruta destino en outputs de Valohai
 output_dir = valohai.outputs().path('mi_dataset_descomprimido')
 os.makedirs(output_dir, exist_ok=True)
