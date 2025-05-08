@@ -1,8 +1,10 @@
 - step:
-    name: playing-with-outputs
-    image: python:3.11-slim
+    name: generar-dataset
+    image: python:3.11
     command:
-    - pip install -r requirements.txt
-    - pip install pillow
-    - python ./valohai_prueba.py {parameters} 
+      - pip install pillow numpy valohai-utils
+      - python generate_dataset.py
+    outputs:
+      - mi_ejemplo_output_carpeta/**
+      - valohai.metadata.jsonl
     environment: valohai-arquimea-ws2
