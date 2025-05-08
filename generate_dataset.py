@@ -9,7 +9,7 @@ output_dir = valohai.outputs().path('mi_ejemplo_output_carpeta')
 os.makedirs(output_dir, exist_ok=True)
 
 output_files = []
-for i in range(2):
+for i in range(1):
     img = Image.fromarray(np.random.randint(0, 255, (100, 100, 3), dtype=np.uint8))
     file_name = f"imagen{i+1}_colores_random.png"
     path = os.path.join(output_dir, file_name)
