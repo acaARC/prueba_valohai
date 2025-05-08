@@ -19,7 +19,7 @@ for i in range(1):
 # Crear metadata del dataset
 metadata = {
     file_name: {
-        "valohai.dataset-versions": ["dataset://mi-dataset-generado/v1"]
+        "valohai.dataset-versions": ["dataset://agranado-dataset/v1"]
     }
     for file_name in output_files
 }
