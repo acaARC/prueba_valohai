@@ -5,6 +5,8 @@
       - pip install pillow numpy valohai-utils
       - python generate_dataset.py
     outputs:
-      - mi_ejemplo_output_carpeta/**
-      - valohai.metadata.jsonl
+      - name: imagenes
+        path: mi_ejemplo_output_carpeta/**
+      - name: metadata
+        path: valohai.metadata.jsonl
     environment: valohai-arquimea-ws2
