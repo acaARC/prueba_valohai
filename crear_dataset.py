@@ -4,7 +4,7 @@ import json
 import valohai
 
 # Ruta origen donde están montados los datos reales (ajusta si es necesario)
-source_dir = '/data/datasets'
+source_dir = '/data/360mip'
 
 # Ruta destino en outputs de Valohai
 output_dir = valohai.outputs().path('mi_dataset_descomprimido')

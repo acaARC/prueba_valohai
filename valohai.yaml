@@ -6,7 +6,7 @@
       - python crear_dataset.py
     mounts:
       - source: C:/Users/AGRANADO/OneDrive - ARQUIMEA GROUP/Escritorio/Valohai/datasets
-        destination: /data/datasets
+        destination: /data/360mip
     outputs:
       - name: mi_dataset_descomprimido
       - name: valohai.metadata.jsonl
