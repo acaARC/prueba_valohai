@@ -6,5 +6,5 @@
       - python leer_dataset.py
     inputs:
       - name: dataset
-        default: dataset://agranado-dataset/v6
+        default: dataset://agranado-dataset/v7
     environment: valohai-arquimea-ws2
